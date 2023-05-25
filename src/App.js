@@ -21,13 +21,15 @@ class App extends React.Component {
 		});
 	};
 
-	handleSubmit = () => {
+	handleSubmit = (event) => {
+		event.preventDefault();
 		console.log("click submit");
 		const todoObj = { content: this.state.inputValue };
 		postTodo(todoObj).then(this.getUpdatedTodos);
 	};
 
 	handleInput = (event) => {
+		event.preventDefault();
 		const value = event.target.value;
 		this.setState({ inputValue: value });
 	};
