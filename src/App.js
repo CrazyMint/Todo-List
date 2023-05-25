@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import List from "./components/List";
+import { postTodo, getTodos, deleteTodo } from "./api";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			inputValue: "",
+			listItems: [],
+		};
+		getTodos().then((data) => {
+			this.setState({ ...this.state, listItems: data });
+		});
+	}
+
+	getUpdatedTodos = () => {
+		getTodos().then((data) => {
+			this.setState({ inputValue: "", listItems: data });
+		});
+	};
+
+	handleSubmit = () => {
+		console.log("click submit");
+		const todoObj = { content: this.state.inputValue };
+		postTodo(todoObj).then(this.getUpdatedTodos);
+	};
+
+	handleInput = (event) => {
+		const value = event.target.value;
+		this.setState({ inputValue: value });
+	};
+
+	handleDelete = (id) => {
+		console.log("removing");
+		deleteTodo(id).then(this.getUpdatedTodos);
+	};
+
+	render() {
+		return (
+			<div id="app">
+				<form>
+					<input value={this.state.inputValue} onChange={this.handleInput} />
+					<button onClick={this.handleSubmit}>submit</button>
+				</form>
+				<List
+					listItems={this.state.listItems}
+					handleDelete={this.handleDelete}
+				/>
+			</div>
+		);
+	}
 }
 
 export default App;
