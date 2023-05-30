@@ -20,7 +20,7 @@
     },
     {
       "content": "cook dinner",
-      "completed": true,
+      "completed": false,
       "editing": false,
       "id": 5
     }
