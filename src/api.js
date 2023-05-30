@@ -14,4 +14,14 @@ const postTodo = (todo) => {
 const deleteTodo = (id) =>
 	fetch(URL + "/" + id, { method: "DELETE" }).then((data) => data.json());
 
-export { getTodos, postTodo, deleteTodo };
+const updateTodo = (todo) => {
+	return fetch(URL + "/" + todo.id, {
+		method: "PATCH",
+		body: JSON.stringify(todo),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	}).then((data) => data.json());
+};
+
+export { getTodos, postTodo, deleteTodo, updateTodo };

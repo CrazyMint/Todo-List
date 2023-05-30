@@ -1,0 +1,48 @@
+ul {
+	width: 400px;
+	padding: 15px;
+	margin: 0px;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	border: 0;
+	border-radius: 5px;
+	background-color: #efeded;
+}
+
+li {
+	display: flex;
+	justify-content: space-between;
+	border: 0;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: #fff8dc;
+	gap: 5px;
+}
+
+input,
+span {
+	flex-grow: 1;
+}
+
+li > button {
+	border: 0;
+	border-radius: 2.5px;
+	color: white;
+	width: 30px;
+	height: 25px;
+	cursor: pointer;
+}
+
+.btn-edit {
+	background-color: #4682b4;
+}
+
+.btn-remove {
+	background-color: #a52a2a;
+}
+
+.btn-complete {
+	background-color: #9acd32;
+}

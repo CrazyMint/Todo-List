@@ -1,15 +1,39 @@
 {
   "todos": [
     {
-      "content": "do homework",
+      "content": "go home",
+      "completed": true,
+      "id": 1,
+      "editing": false
+    },
+    {
+      "content": "sleepzzz",
+      "completed": true,
+      "id": 2,
+      "editing": false
+    },
+    {
+      "content": "say hi",
+      "completed": false,
+      "editing": false,
+      "id": 3
+    },
+    {
+      "content": "cook dinner",
+      "completed": false,
+      "editing": false,
       "id": 5
     },
     {
-      "content": "wash dishes",
+      "content": "1",
+      "completed": false,
+      "editing": false,
       "id": 6
     },
     {
-      "content": "read",
+      "content": "2",
+      "completed": true,
+      "editing": false,
       "id": 7
     }
   ]
