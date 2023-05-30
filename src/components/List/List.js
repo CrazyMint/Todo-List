@@ -32,14 +32,9 @@ export default class List extends Component {
 	};
 
 	render() {
-		const {
-			listItems,
-			handleDelete,
-			handleComplete,
-			listName,
-			updateListState,
-		} = this.props;
-		const renderListItems = listItems.map((todo) => (
+		const { todos, handleDelete, handleComplete, listName, updateListState } =
+			this.props;
+		const renderListItems = todos.map((todo) => (
 			<li item-id={todo.id} key={todo.id} className="list-item">
 				{todo.completed === true && (
 					<button

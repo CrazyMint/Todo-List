@@ -20,21 +20,9 @@
     },
     {
       "content": "cook dinner",
-      "completed": false,
-      "editing": false,
-      "id": 5
-    },
-    {
-      "content": "1",
-      "completed": false,
-      "editing": false,
-      "id": 6
-    },
-    {
-      "content": "2",
       "completed": true,
       "editing": false,
-      "id": 7
+      "id": 5
     }
   ]
 }

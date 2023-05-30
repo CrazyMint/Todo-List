@@ -2,23 +2,18 @@ import React, { Component } from "react";
 import { postTodo, getTodos, deleteTodo, updateTodo } from "../../api";
 import List from "../List/List";
 import "./ListContainer.css";
+import { withTodos } from "../hoc/withTodos";
 
-export default class Todolist extends Component {
+class ListContainer extends Component {
 	state = {
 		inputValue: "",
-		listItems: [],
+		// todos: [],
 	};
 
-	updateState = (data) => {
-		this.setState({
-			listItems: this.state.listItems.map((item) => {
-				if (item.id === data.id) {
-					return { ...data };
-				} else {
-					return item;
-				}
-			}),
-		});
+	handleInput = (event) => {
+		event.preventDefault();
+		const value = event.target.value;
+		this.setState({ inputValue: value });
 	};
 
 	handleSubmit = (event) => {
@@ -32,40 +27,18 @@ export default class Todolist extends Component {
 		postTodo(todoObj).then((listItem) => {
 			this.setState({
 				inputValue: "",
-				listItems: [...this.state.listItems, listItem],
 			});
+			this.props.addToList(listItem);
 		});
-	};
-
-	handleInput = (event) => {
-		event.preventDefault();
-		const value = event.target.value;
-		this.setState({ inputValue: value });
-	};
-
-	handleDelete = (id) => {
-		console.log("removing");
-		deleteTodo(id).then(() => {
-			this.setState({
-				listItems: [...this.state.listItems.filter((item) => item.id !== +id)],
-			});
-		});
-	};
-
-	handleComplete = (todo) => {
-		console.log("completing");
-		updateTodo({ ...todo, completed: !todo.completed }).then(this.updateState);
 	};
 
 	render() {
-		const pendingItems = this.state.listItems.filter(
-			(item) => item.completed === false
-		);
-		const completedItems = this.state.listItems.filter(
-			(item) => item.completed === true
-		);
+		const { todos, handleDelete, handleComplete, handleEdit, updateListState } =
+			this.props;
+		const pendingItems = todos.filter((item) => item.completed === false);
+		const completedItems = todos.filter((item) => item.completed === true);
 		return (
-			<div id="app">
+			<div id="container-all">
 				<form>
 					<input value={this.state.inputValue} onChange={this.handleInput} />
 					<button onClick={this.handleSubmit} className="btn-submit">
@@ -75,28 +48,30 @@ export default class Todolist extends Component {
 				<div className="container">
 					<List
 						listName={"Pending Tasks"}
-						listItems={pendingItems}
-						handleDelete={this.handleDelete}
-						handleComplete={this.handleComplete}
-						handleEdit={this.handleEdit}
-						updateListState={this.updateState}
+						todos={pendingItems}
+						handleDelete={handleDelete}
+						handleComplete={handleComplete}
+						handleEdit={handleEdit}
+						updateListState={updateListState}
 					/>
 					<List
 						listName={"Completed Tasks"}
-						listItems={completedItems}
-						handleDelete={this.handleDelete}
-						handleComplete={this.handleComplete}
-						handleEdit={this.handleEdit}
-						updateListState={this.updateState}
+						todos={completedItems}
+						handleDelete={handleDelete}
+						handleComplete={handleComplete}
+						handleEdit={handleEdit}
+						updateListState={updateListState}
 					/>
 				</div>
 			</div>
 		);
 	}
 
-	componentDidMount = () => {
-		getTodos().then((data) => {
-			this.setState({ listItems: data });
-		});
-	};
+	// componentDidMount = () => {
+	// 	getTodos().then((data) => {
+	// 		this.setState({ listItems: data });
+	// 	});
+	// };
 }
+
+export default withTodos(ListContainer);
