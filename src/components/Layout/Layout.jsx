@@ -10,7 +10,7 @@ export default class Layout extends Component {
 						style={{
 							backgroundColor: "bisque",
 							display: "flex",
-							"flex-direction": "row",
+							flexDirection: "row",
 							alignItems: "center",
 							height: "30px",
 							gap: "20px",
