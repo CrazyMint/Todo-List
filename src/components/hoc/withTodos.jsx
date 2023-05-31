@@ -43,6 +43,7 @@ export const withTodos = (Component) => {
 		};
 
 		render() {
+			console.log(this.state);
 			return (
 				<Component
 					{...this.props}

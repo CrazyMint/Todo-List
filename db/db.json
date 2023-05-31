@@ -2,7 +2,7 @@
   "todos": [
     {
       "content": "go home",
-      "completed": true,
+      "completed": false,
       "id": 1,
       "editing": false
     },
@@ -20,7 +20,7 @@
     },
     {
       "content": "cook dinner",
-      "completed": false,
+      "completed": true,
       "editing": false,
       "id": 5
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { postTodo, getTodos, deleteTodo, updateTodo } from "../../api";
+import { postTodo } from "../../api";
 import List from "../List/List";
 import "./ListContainer.css";
 import { withTodos } from "../hoc/withTodos";
@@ -66,12 +66,6 @@ class ListContainer extends Component {
 			</div>
 		);
 	}
-
-	// componentDidMount = () => {
-	// 	getTodos().then((data) => {
-	// 		this.setState({ listItems: data });
-	// 	});
-	// };
 }
 
 export default withTodos(ListContainer);

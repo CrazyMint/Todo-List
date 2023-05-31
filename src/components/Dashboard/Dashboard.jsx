@@ -16,16 +16,6 @@ class Dashboard extends Component {
 			</div>
 		);
 	}
-
-	// componentDidMount() {
-	// 	getTodos().then((todos) => {
-	// 		this.setState({
-	// 			totalTodo: todos.length,
-	// 			totalCompletedTodo: todos.filter((todo) => todo.completed === true)
-	// 				.length,
-	// 		});
-	// 	});
-	// }
 }
 
 export default withTodos(Dashboard);
